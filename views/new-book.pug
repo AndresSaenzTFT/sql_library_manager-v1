@@ -1,0 +1,20 @@
+extends layout 
+block content
+  body
+    include form-error
+    h1 New Book
+
+    form(action="/books", method="post")
+      div
+        label(for="title") Title:
+        input(type="text", name="title" value=book.title)
+      div
+        label(for="author") Author:
+        input(type="text", name="author" value=book.author)
+      div
+        label(for="year") Year:
+        textarea(name="year")= book.year
+      div
+        label(for="genre") Genre:
+        textarea(name="genre")= book.genre
+      input(type="submit")
