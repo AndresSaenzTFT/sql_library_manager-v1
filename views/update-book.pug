@@ -1,5 +1,7 @@
 extends layout 
 block content 
+    body 
+      include form-error
     form(method="post" action=`/books/${book.id}`)
       p
         label(for="title") Title
