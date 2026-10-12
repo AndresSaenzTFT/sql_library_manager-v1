@@ -27,6 +27,8 @@ app.use("/", routes);
 //when declaring a route with the model, it combines the declared route with the default "/" route
 app.use("/books", books);
 
+//express runs the www bin file
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const error = new Error();
