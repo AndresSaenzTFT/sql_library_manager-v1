@@ -35,7 +35,7 @@ router.get(
 );
 
 router.post(
-  "/",
+  "/new",
   asyncHandler(async (req, res) => {
     let book;
     try {
@@ -63,7 +63,10 @@ router.get(
     if (book) {
       res.render("update-book", { book });
     } else {
-      throw createError(404, "Sorry! We couldn't find the book you were looking for.");
+      throw createError(
+        404,
+        "Sorry! We couldn't find the book you were looking for.",
+      );
     }
   }),
 );
@@ -78,34 +81,10 @@ router.post(
         await book.update(req.body);
         res.redirect("/");
       } else {
-        throw createError(404, "Sorry! We couldn't find the book you were looking for.");
-      }
-    } catch (error) {
-      if (error.name === "SequelizeValidationError") {
-        book = await Book.build(req.body);
-        book.id = req.params.id;
-        res.render("update-book", {
-          book,
-          errors: error.errors,
-        });
-      } else {
-        throw error;
-      }
-    }
-  }),
-);
-
-router.post(
-  "/:id",
-  asyncHandler(async (req, res) => {
-    let book;
-    try {
-      book = await Book.findByPk(req.params.id);
-      if (book) {
-        await book.update(req.body);
-        res.redirect("/");
-      } else {
-        throw createError(404, "Sorry! We couldn't find the book you were looking for.");
+        throw createError(
+          404,
+          "Sorry! We couldn't find the book you were looking for.",
+        );
       }
     } catch (error) {
       if (error.name === "SequelizeValidationError") {
@@ -130,7 +109,10 @@ router.post(
       await book.destroy();
       res.redirect("/");
     } else {
-      throw createError(404, "Sorry! We couldn't find the book you were looking for.");
+      throw createError(
+        404,
+        "Sorry! We couldn't find the book you were looking for.",
+      );
     }
   }),
 );
